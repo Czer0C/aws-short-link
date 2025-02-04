@@ -11,5 +11,6 @@ export function getLinks(): Promise<Link[]> {
     })
     .catch((err) => {
       console.log(err)
+      return []
     })
 }
