@@ -1,6 +1,9 @@
 'use client'
 
 import { createLink } from '@/actions/createLink'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { useState } from 'react'
 
 export default function CreateLinkInput() {
@@ -8,41 +11,32 @@ export default function CreateLinkInput() {
 
   const handleAddLink = async () => {
     await createLink(link)
-
     setLink('')
   }
 
   return (
-    <div className="flex flex-col w-96">
-      <label
-        htmlFor="price"
-        className="block text-sm/6 font-medium text-gray-900"
-      >
+    <div className="flex flex-col w-96 my-4">
+      <Label htmlFor="link" className="block text-sm font-medium text-gray-900">
         Link
-      </label>
+      </Label>
       <div className="mt-2">
-        <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-          <input
-            value={link}
-            onChange={(e) => {
-              setLink(e.target.value)
-            }}
-            id="price"
-            name="price"
-            type="text"
-            placeholder="https://example.com"
-            className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-          />
-        </div>
+        <Input
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+          id="link"
+          name="link"
+          type="text"
+          placeholder="https://example.com"
+          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        />
       </div>
-
-      <button
+      <Button
         className="mt-4 bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded"
         onClick={handleAddLink}
         disabled={!link}
       >
         Create
-      </button>
+      </Button>
     </div>
   )
 }
